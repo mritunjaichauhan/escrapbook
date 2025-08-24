@@ -210,7 +210,7 @@ export default function Home() {
                     className="mt-12"
                   >
                     <p className="text-lg md:text-xl text-muted-foreground mb-8 font-poppins">
-                      No pressure at all—just wanted you to feel a little warmth today. You&apos;re loved and missed.
+                      No pressure at all—just wanted you to feel a little warmth today.
                     </p>
                     
                     <motion.button
