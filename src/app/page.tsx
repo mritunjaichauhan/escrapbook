@@ -70,6 +70,13 @@ export default function Home() {
     return () => window.removeEventListener('nextStep', handleNextStep)
   }, [currentStep])
 
+  // Auto-scroll to top when step changes
+  useEffect(() => {
+    if (currentStep > 0) { // Don't scroll on intro step
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }, [currentStep])
+
   const handleNext = async () => {
     console.log('handleNext called, currentStep:', currentStep, 'steps.length:', steps.length)
     if (currentStep === 0) {

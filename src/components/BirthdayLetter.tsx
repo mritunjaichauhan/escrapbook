@@ -4,8 +4,8 @@ import { motion } from 'framer-motion'
 
 export default function BirthdayLetter() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-orange-100 flex items-center justify-center p-8">
-      <div className="max-w-3xl w-full">
+    <div className="w-full bg-gradient-to-br from-orange-50 via-amber-50 to-orange-100 pt-8 pb-20">
+      <div className="max-w-3xl w-full mx-auto px-4">
         <motion.div 
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
