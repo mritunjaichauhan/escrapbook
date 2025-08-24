@@ -5,11 +5,42 @@ import { Calendar, MapPin, Heart, Star, Sparkles } from 'lucide-react'
 import { useState } from 'react'
 import Image from 'next/image'
 
+// TypeScript interfaces to replace 'any' types
+interface TicketDetails {
+  from: string
+  to: string
+  date: string
+  price: string
+}
+
+interface ReceiptDetails {
+  item: string
+  occasion: string
+  value: string
+  date: string
+}
+
+interface Memory {
+  id: number
+  type: 'ticket' | 'receipt' | 'note' | 'photo'
+  title: string
+  description: string
+  year: number
+  month?: string
+  rotation: number
+  location?: string
+  image?: string
+  sticker?: string
+  emotion?: string
+  ticketDetails?: TicketDetails
+  receiptDetails?: ReceiptDetails
+}
+
 // Scrapbook style memories with tickets and receipts
-const memories = [
+const memories: Memory[] = [
   {
     id: 1,
-    year: '2005',
+    year: 2005,
     title: 'Our First Adventure',
     description: 'Remember when we built that treehouse in the backyard? You insisted on painting it blue, and we spent the whole summer up there.',
     location: 'Old House',
@@ -21,7 +52,7 @@ const memories = [
   },
   {
     id: 2,
-    year: '2010',
+    year: 2010,
     title: 'The Great Road Trip',
     description: 'That spontaneous trip to the mountains. We got lost, but ended up finding the most beautiful sunset spot.',
     location: 'Colorado Mountains',
@@ -39,7 +70,7 @@ const memories = [
   },
   {
     id: 3,
-    year: '2015',
+    year: 2015,
     title: 'Graduation Day',
     description: 'I was so proud watching you walk across that stage. You\'ve always been destined for great things.',
     location: 'University Campus',
@@ -51,7 +82,7 @@ const memories = [
   },
   {
     id: 4,
-    year: '2018',
+    year: 2018,
     title: 'The Wedding',
     description: 'Your best man speech still makes me laugh. "May your love be modern enough to survive the times, but old-fashioned enough to last forever."',
     location: 'Hometown',
@@ -69,7 +100,7 @@ const memories = [
   },
   {
     id: 5,
-    year: '2020',
+    year: 2020,
     title: 'Pandemic Gaming Sessions',
     description: 'When the world stopped, we found each other online. Those late-night gaming sessions kept us connected.',
     location: 'Virtual',
@@ -82,7 +113,7 @@ const memories = [
 ]
 
 // Ticket component
-const Ticket = ({ memory }: { memory: any }) => (
+const Ticket = ({ memory }: { memory: Memory }) => (
   <div 
     className="bg-blue-50 border-2 border-dashed border-blue-300 p-4 rounded-lg relative"
     style={{ transform: `rotate(${memory.rotation}deg)` }}
@@ -95,17 +126,17 @@ const Ticket = ({ memory }: { memory: any }) => (
     <div className="text-center">
       <div className="text-lg font-bold text-blue-800 mb-2">{memory.title}</div>
       <div className="text-sm text-blue-600 space-y-1">
-        <div>FROM: {memory.ticketDetails.from}</div>
-        <div>TO: {memory.ticketDetails.to}</div>
-        <div>DATE: {memory.ticketDetails.date}</div>
-        <div>PRICE: {memory.ticketDetails.price}</div>
+        <div>FROM: {memory.ticketDetails?.from}</div>
+        <div>TO: {memory.ticketDetails?.to}</div>
+        <div>DATE: {memory.ticketDetails?.date}</div>
+        <div>PRICE: {memory.ticketDetails?.price}</div>
       </div>
     </div>
   </div>
 )
 
 // Receipt component
-const Receipt = ({ memory }: { memory: any }) => (
+const Receipt = ({ memory }: { memory: Memory }) => (
   <div 
     className="bg-white border border-gray-300 p-4 shadow-lg relative"
     style={{ 
@@ -121,20 +152,20 @@ const Receipt = ({ memory }: { memory: any }) => (
     <div className="font-mono text-xs space-y-1">
       <div className="flex justify-between">
         <span>ITEM:</span>
-        <span>{memory.receiptDetails.item}</span>
+        <span>{memory.receiptDetails?.item}</span>
       </div>
       <div className="flex justify-between">
         <span>OCCASION:</span>
-        <span>{memory.receiptDetails.occasion}</span>
+        <span>{memory.receiptDetails?.occasion}</span>
       </div>
       <div className="flex justify-between">
         <span>VALUE:</span>
-        <span>{memory.receiptDetails.value}</span>
+        <span>{memory.receiptDetails?.value}</span>
       </div>
       <div className="border-t border-gray-300 pt-1 mt-2">
         <div className="flex justify-between font-bold">
           <span>DATE:</span>
-          <span>{memory.receiptDetails.date}</span>
+          <span>{memory.receiptDetails?.date}</span>
         </div>
       </div>
     </div>
@@ -187,9 +218,11 @@ export default function MemoryTimeline() {
 
               {/* Memory content */}
               <div className="flex-1 md:max-w-md">
-                {memory.type === 'photo' && (
+                {memory.type === 'photo' && memory.image && (
                   <motion.div
-                    whileHover={{ scale: 1.05, rotate: 0 }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: index * 0.3 + 0.2 }}
                     className="relative"
                     style={{ transform: `rotate(${memory.rotation}deg)` }}
                   >
@@ -210,12 +243,14 @@ export default function MemoryTimeline() {
                     </div>
                     
                     {/* Sticker */}
-                    <div 
-                      className="absolute -top-2 -right-2 text-3xl"
-                      style={{ transform: 'rotate(15deg)' }}
-                    >
-                      {memory.sticker}
-                    </div>
+                    {memory.sticker && (
+                      <div 
+                        className="absolute -top-2 -right-2 text-3xl"
+                        style={{ transform: 'rotate(15deg)' }}
+                      >
+                        {memory.sticker}
+                      </div>
+                    )}
                     
                     {/* Tape effect */}
                     <div 
@@ -258,14 +293,18 @@ export default function MemoryTimeline() {
                   </p>
                   
                   <div className="flex flex-wrap gap-4 text-sm">
-                    <span className="flex items-center gap-1 bg-gray-100 px-3 py-1 rounded-full">
-                      <MapPin className="w-4 h-4 text-gray-500" />
-                      <span className="font-handwriting">{memory.location}</span>
-                    </span>
-                    <span className="flex items-center gap-1 bg-pink-100 px-3 py-1 rounded-full">
-                      <Heart className="w-4 h-4 text-pink-500" />
-                      <span className="font-handwriting">{memory.emotion}</span>
-                    </span>
+                    {memory.location && (
+                      <span className="flex items-center gap-1 bg-gray-100 px-3 py-1 rounded-full">
+                        <MapPin className="w-4 h-4 text-gray-500" />
+                        <span className="font-handwriting">{memory.location}</span>
+                      </span>
+                    )}
+                    {memory.emotion && (
+                      <span className="flex items-center gap-1 bg-pink-100 px-3 py-1 rounded-full">
+                        <Heart className="w-4 h-4 text-pink-500" />
+                        <span className="font-handwriting">{memory.emotion}</span>
+                      </span>
+                    )}
                   </div>
 
                   {/* Paper texture lines */}
