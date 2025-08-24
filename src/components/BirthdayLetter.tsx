@@ -33,7 +33,7 @@ export default function BirthdayLetter() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
             >
-              Another year, another birthday—and even though you're far away, what I feel most today is how lucky I am to have you as my brother.
+              Another year, another birthday—and even though you&apos;re far away, what I feel most today is how lucky I am to have you as my brother.
             </motion.p>
             
             <motion.p 
@@ -41,7 +41,7 @@ export default function BirthdayLetter() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.9 }}
             >
-              To me, you've always been more than just a brother. You were my anchor, my guide, and often my voice when I couldn't speak for myself. I still remember how you'd step in with Mumma and Papa, making sense of things I couldn't explain. From you, I've learned what real support and quiet strength look like. And I want you to know—you can always lean on me, just like I leaned on you.
+              To me, you&apos;ve always been more than just a brother. You were my anchor, my guide, and often my voice when I couldn&apos;t speak for myself. I still remember how you&apos;d step in with Mumma and Papa, making sense of things I couldn&apos;t explain. From you, I&apos;ve learned what real support and quiet strength look like. And I want you to know—you can always lean on me, just like I leaned on you.
             </motion.p>
             
             <motion.p 
@@ -57,7 +57,7 @@ export default function BirthdayLetter() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.3 }}
             >
-              These memories remind me of the bond we share, one that no distance can ever weaken. I miss you, and I'm already looking forward to the day you're home so we can make new memories together.
+              These memories remind me of the bond we share, one that no distance can ever weaken. I miss you, and I&apos;m already looking forward to the day you&apos;re home so we can make new memories together.
             </motion.p>
             
             <motion.p 
