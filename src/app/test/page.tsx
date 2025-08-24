@@ -7,7 +7,7 @@ export default function TestPage() {
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center">
       <div className="text-center max-w-2xl mx-auto p-8">
         <h1 className="text-5xl font-bold text-transparent bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text mb-8">
-          Happy Birthday, Brother
+          Happy Birthday, Bhaiya
         </h1>
         <p className="text-gray-400 text-lg mb-8">
           This is a simple test page to verify everything is working correctly.

@@ -122,7 +122,7 @@ export default function Home() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">Happy Birthday, Brother</h1>
+          <h1 className="text-4xl font-bold text-white mb-4">Happy Birthday, Bhaiya</h1>
           <p className="text-gray-400">Loading your special surprise...</p>
         </div>
       </div>
@@ -172,7 +172,7 @@ export default function Home() {
                   transition={{ delay: 0.7, duration: 0.8, ease: "easeOut" }}
                   className="text-5xl md:text-7xl font-display text-gradient mb-6"
                 >
-                  Happy Birthday, Brother
+                  Happy Birthday, Bhaiya
                 </motion.h1>
                 
                                     <motion.p 
@@ -261,7 +261,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="w-full"
+                className="w-full pb-8 md:pb-12"
               >
                 {currentStepData.component && <currentStepData.component />}
               </motion.div>

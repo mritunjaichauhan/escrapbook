@@ -15,7 +15,7 @@ const dancingScript = Dancing_Script({
 });
 
 export const metadata: Metadata = {
-  title: "Happy Birthday, Brother",
+  title: "Happy Birthday, Bhaiya",
   description: "A special birthday message for someone who means the world to me",
 };
 
